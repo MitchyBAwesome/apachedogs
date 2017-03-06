@@ -1,0 +1,13 @@
+web:
+  image: nginx
+  ports:
+    - 80:80
+  labels:
+    - convox.router.path=/*
+
+api:
+  image: shivaman/alb-httpd:latest
+  ports:
+    - 80:80
+  labels:
+    - convox.router.path=/api/*
