@@ -11,6 +11,7 @@ RUN apt-get update -y && \
   rm -rf /tmp/* && \
   rm -rf /var/lib/apt/lists/*
 COPY ./httpd.conf /usr/local/apache2/conf/
-COPY ./index.html /usr/local/apache2//htdocs
-#CMD /usr/local/bin/aws --region us-east-1 s3 cp s3://ecs-apache-dogs /usr/local/apache2/htdocs --recursive && 
-CMD httpd -D FOREGROUND
+COPY ./index.html /usr/local/apache2/htdocs/
+COPY ./init.sh /tmp/init.sh
+RUN chmod +x /tmp/init.sh
+CMD /tmp/init.sh && httpd -D FOREGROUND
