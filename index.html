@@ -18,8 +18,18 @@
 <script type="text/javascript">
         function random_image(min=1, max=10){
         	var index = Math.floor(Math.random() * (max - min + 1)) + min;
+
+            if (secret !== '' && random100(10)) {
+                max = 5;
+                index = Math.floor(Math.random() * (max - min + 1)) + min;
+                index = secret + '/' + index.toString();
+            }
   			document.write("<img src='"+index+".jpg' />");
 
+        }
+
+        function random100(percentage) {
+            return Math.floor(Math.random() * 100) +1 <= percentage;
         }
 
 </script>
